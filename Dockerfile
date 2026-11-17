@@ -1,8 +1,7 @@
-#FROM ubuntu:20.04
-FROM phusion/baseimage:focal-1.2.0
+FROM phusion/baseimage:resolute
 
-RUN apt-get update -y && apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:nginx/stable && apt-get update -y && apt-get install -y nginx-full
+#RUN apt-get update -y && apt-get install -y software-properties-common
+RUN apt-get update && apt-get install -y nginx-full
 
 RUN apt-get install -y python3 python3-venv libaugeas0
 RUN python3 -m venv /opt/certbot/
@@ -19,9 +18,4 @@ RUN apt-get clean && /opt/certbot/bin/pip cache purge && rm -rf /var/lib/apt/lis
 
 EXPOSE 80 443
 
-#WORKDIR /etc/nginx
-
-#ADD docker-entrypoint.sh /root/
-
-#CMD ["/root/docker-entrypoint.sh"]
 CMD ["/sbin/my_init"]
