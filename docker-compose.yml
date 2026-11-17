@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+ web:
+   image: alexverrico/nginx_certbot
+   container_name: nginx
+   restart: always
+   volumes:
+      - /path/to/nginx_conf:/etc/nginx
+      - /path/to/letsencrypt_conf:/etc/letsencrypt
+   ports:
+     - "80:80"
+     - "443:443"
